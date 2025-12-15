@@ -1,0 +1,167 @@
+server:
+  port: 8062
+
+spring:
+  application:
+    name: api-gateway
+
+  datasource:
+    url: jdbc:mysql://localhost:3306/flight_auth_db?createDatabaseIfNotExist=true&useSSL=false&allowPublicKeyRetrieval=true
+    username: root
+    password: Riju@03Rai@07
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+
+  cloud:
+    gateway:
+
+      # =======================
+      # 🌐 GLOBAL CORS CONFIG
+      # =======================
+      globalcors:
+        add-to-simple-url-handler-mapping: true
+        corsConfigurations:
+          "[/**]":
+            allowedOrigins:
+              - "http://localhost:4200"
+            allowedMethods:
+              - GET
+              - POST
+              - PUT
+              - DELETE
+              - OPTIONS
+            allowedHeaders:
+              - Authorization
+              - Content-Type
+              - Accept
+              - X-Requested-With
+            allowCredentials: true
+
+      # =======================
+      # 🚦 ROUTES
+      # =======================
+      routes:
+
+        # -------- Flight Service --------
+
+        - id: flight-airline-add
+          uri: lb://flight-service
+          predicates:
+            - Path=/api/v1.0/flight/airline/add
+            - Method=POST
+          filters:
+            - StripPrefix=0
+
+        - id: flight-airline-get
+          uri: lb://flight-service
+          predicates:
+            - Path=/api/v1.0/flight/airline/{id}
+            - Method=GET
+          filters:
+            - StripPrefix=0
+
+        - id: flight-airline-all
+          uri: lb://flight-service
+          predicates:
+            - Path=/api/v1.0/flight/airline/all
+            - Method=GET
+          filters:
+            - StripPrefix=0
+
+        - id: flight-inventory-add
+          uri: lb://flight-service
+          predicates:
+            - Path=/api/v1.0/flight/airline/inventory/add
+            - Method=POST
+          filters:
+            - StripPrefix=0
+
+        - id: flight-search
+          uri: lb://flight-service
+          predicates:
+            - Path=/api/v1.0/flight/search
+          filters:
+            - StripPrefix=0
+            - DedupeResponseHeader=Access-Control-Allow-Origin Access-Control-Allow-Credentials
+
+        - id: flight-details
+          uri: lb://flight-service
+          predicates:
+            - Path=/api/v1.0/flight/{flightId}
+            - Method=GET
+          filters:
+            - StripPrefix=0
+
+        - id: flight-seat-operations
+          uri: lb://flight-service
+          predicates:
+            - Path=/api/v1.0/flight/{flightId}/**
+            - Method=PUT
+          filters:
+            - StripPrefix=0
+
+        # -------- Booking Service --------
+
+        - id: booking-create
+          uri: lb://booking-service
+          predicates:
+            - Path=/api/v1.0/flight/booking/{flightId}
+            - Method=POST
+          filters:
+            - StripPrefix=0
+
+        - id: booking-ticket-get
+          uri: lb://booking-service
+          predicates:
+            - Path=/api/v1.0/flight/ticket/{pnr}
+            - Method=GET
+          filters:
+            - StripPrefix=0
+
+        - id: booking-history
+          uri: lb://booking-service
+          predicates:
+            - Path=/api/v1.0/flight/booking/history/{emailId}
+            - Method=GET
+          filters:
+            - StripPrefix=0
+
+        - id: booking-cancel
+          uri: lb://booking-service
+          predicates:
+            - Path=/api/v1.0/flight/booking/cancel/{pnr}
+            - Method=DELETE
+          filters:
+            - StripPrefix=0
+
+# =======================
+# 🔐 JWT CONFIG
+# =======================
+jwt:
+  secret: "this_is_a_very_long_and_secure_jwt_secret_key_123456"
+  expiration-ms: 86400000
+
+# =======================
+# 📡 EUREKA
+# =======================
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+    register-with-eureka: true
+    fetch-registry: true
+
+# =======================
+# 🪵 LOGGING
+# =======================
+logging:
+  level:
+    root: INFO
+    org.springframework.cloud.gateway: DEBUG
