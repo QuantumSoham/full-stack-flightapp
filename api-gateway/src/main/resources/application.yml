@@ -1,0 +1,139 @@
+server:
+  port: 8069
+
+spring:
+  application:
+    name: api-gateway
+  cloud:
+    gateway:
+      routes:
+        # Flight Service - Airline endpoints
+        - id: flight-airline-add
+          uri: lb://flight-service
+          predicates:
+            - Path=/api/v1.0/flight/airline/add
+            - Method=POST
+          filters:
+            - StripPrefix=0
+
+        - id: flight-airline-get
+          uri: lb://flight-service
+          predicates:
+            - Path=/api/v1.0/flight/airline/{id}
+            - Method=GET
+          filters:
+            - StripPrefix=0
+
+        - id: flight-airline-all
+          uri: lb://flight-service
+          predicates:
+            - Path=/api/v1.0/flight/airline/all
+            - Method=GET
+          filters:
+            - StripPrefix=0
+
+        # Flight Service - Inventory endpoints
+        - id: flight-inventory-add
+          uri: lb://flight-service
+          predicates:
+            - Path=/api/v1.0/flight/airline/inventory/add
+            - Method=POST
+          filters:
+            - StripPrefix=0
+
+        # Flight Service - Search endpoints
+        - id: flight-search
+          uri: lb://flight-service
+          predicates:
+            - Path=/api/v1.0/flight/search
+            - Method=POST
+          filters:
+            - StripPrefix=0
+
+        # Flight Service - Get flight details
+        - id: flight-details
+          uri: lb://flight-service
+          predicates:
+            - Path=/api/v1.0/flight/{flightId}
+            - Method=GET
+          filters:
+            - StripPrefix=0
+
+        # Flight Service - Seat management
+        - id: flight-seat-operations
+          uri: lb://flight-service
+          predicates:
+            - Path=/api/v1.0/flight/{flightId}/**
+            - Method=PUT
+          filters:
+            - StripPrefix=0
+
+        # Booking Service - User endpoints
+        - id: booking-user-register
+          uri: lb://booking-service
+          predicates:
+            - Path=/api/v1.0/user/register
+            - Method=POST
+          filters:
+            - StripPrefix=0
+
+        - id: booking-user-get
+          uri: lb://booking-service
+          predicates:
+            - Path=/api/v1.0/user/{email}
+            - Method=GET
+          filters:
+            - StripPrefix=0
+
+        # Booking Service - Booking endpoints
+        - id: booking-create
+          uri: lb://booking-service
+          predicates:
+            - Path=/api/v1.0/flight/booking/{flightId}
+            - Method=POST
+          filters:
+            - StripPrefix=0
+
+        - id: booking-ticket-get
+          uri: lb://booking-service
+          predicates:
+            - Path=/api/v1.0/flight/ticket/{pnr}
+            - Method=GET
+          filters:
+            - StripPrefix=0
+
+        - id: booking-history
+          uri: lb://booking-service
+          predicates:
+            - Path=/api/v1.0/flight/booking/history/{emailId}
+            - Method=GET
+          filters:
+            - StripPrefix=0
+
+        - id: booking-cancel
+          uri: lb://booking-service
+          predicates:
+            - Path=/api/v1.0/flight/booking/cancel/{pnr}
+            - Method=DELETE
+          filters:
+            - StripPrefix=0
+
+      # Global CORS configuration
+      globalcors:
+        corsConfigurations:
+          '[/**]':
+            allowedOrigins: "*"
+            allowedMethods: "*"
+            allowedHeaders: "*"
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+    register-with-eureka: true
+    fetch-registry: true
+
+logging:
+  level:
+    root: INFO
+    org.springframework.cloud.gateway: DEBUG
