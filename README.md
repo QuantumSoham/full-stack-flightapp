@@ -5,6 +5,7 @@ This repository contains the **Angular frontend** for a Flight Management System
 
 <img width="5047" height="1828" alt="image" src="https://github.com/user-attachments/assets/00bee95a-0596-458a-a9cf-c27a070ab8b5" />
 
+![Architecture Diagram](images/login-page.jpg)
 
 The frontend is responsible for:
 - User authentication (login & register)
