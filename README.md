@@ -5,7 +5,18 @@ This repository contains the **Angular frontend** for a Flight Management System
 
 <img width="5047" height="1828" alt="image" src="https://github.com/user-attachments/assets/00bee95a-0596-458a-a9cf-c27a070ab8b5" />
 
-![Architecture Diagram](images/login-page.jpg)
+## Login Page
+![Login Page](images/login-page.jpg)
+
+## Registration Page
+![Registration Page](images/reg-page.jpg)
+
+## Flight Search Page
+![Flight Search Page](images/flight-search-page.jpg)
+
+## Dockerized Microservices Architecture
+![Dockerized Microservices](images/dockerized-microservices.jpg)
+
 
 The frontend is responsible for:
 - User authentication (login & register)
