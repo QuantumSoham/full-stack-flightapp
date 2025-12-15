@@ -1,11 +1,23 @@
-import { Component } from '@angular/core';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-@Component({
-  selector: 'app-register',
-  imports: [],
-  templateUrl: './register.html',
-  styleUrl: './register.css',
-})
-export class Register {
+import { RegisterComponent as Register } from './register.component';
 
-}
+describe('Register', () => {
+  let component: Register;
+  let fixture: ComponentFixture<Register>;
+
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
+      imports: [Register]
+    })
+    .compileComponents();
+
+    fixture = TestBed.createComponent(Register);
+    component = fixture.componentInstance;
+    await fixture.whenStable();
+  });
+
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
+});
