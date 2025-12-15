@@ -14,6 +14,9 @@ This repository contains the **Angular frontend** for a Flight Management System
 ## Flight Search Page
 ![Flight Search Page](images/flight-search-page.jpg)
 
+## Dockerized Frontend 
+![Dockerized Microservices](images/dockerized--frontend.jpg)
+
 ## Dockerized Microservices Architecture
 ![Dockerized Microservices](images/dockerized-microservices.jpg)
 
