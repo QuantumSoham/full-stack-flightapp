@@ -29,7 +29,10 @@ The frontend is responsible for:
 - Route protection
 - Clean communication with backend services
 
-The goal of this project was to build a **real-world, production-style frontend** that mirrors how enterprise systems are structured.
+# Run my frontend in your docker !!
+```shell
+docker pull sohamc2003/flight-frontend
+```
 
 ---
 
