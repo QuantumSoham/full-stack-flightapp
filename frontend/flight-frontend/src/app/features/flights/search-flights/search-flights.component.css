@@ -42,7 +42,7 @@
 /* Focus state */
 .search-container input:focus {
   outline: none;
-  border-color: #2563eb;
+  border-color: #7138f5;
   box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
 }
 
@@ -51,7 +51,7 @@
   width: 100%;
   margin-top: 0.5rem;
   padding: 0.8rem;
-  background: linear-gradient(135deg, #2563eb, #1e40af);
+  background: linear-gradient(135deg, #ff30b7, #1e40af);
   color: #ffffff;
   border: none;
   border-radius: 10px;
@@ -129,4 +129,12 @@
   .flight-card {
     padding: 1.1rem;
   }
+}
+
+input.ng-invalid.ng-touched {
+  border: 1px solid #e63946;
+}
+
+input.ng-valid.ng-touched {
+  border: 1px solid #2a9d8f;
 }

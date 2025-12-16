@@ -1,7 +1,7 @@
 <div class="login-container">
   <h1>Fly With Us</h1>
 
-  <!-- 🔹 CHANGED: added required + email validation -->
+  <!-- added required + email validation -->
   <input
     type="email"
     placeholder="Email"
@@ -9,7 +9,7 @@
     required
   />
 
-  <!-- 🔹 CHANGED: added required -->
+  <!--added required -->
   <input
     type="password"
     placeholder="Password"
@@ -17,7 +17,7 @@
     required
   />
 
-  <!-- 🔹 CHANGED: disable button if inputs invalid -->
+  <!--disable button if inputs invalid -->
   <button
     (click)="login()"
     [disabled]="!email || !password"

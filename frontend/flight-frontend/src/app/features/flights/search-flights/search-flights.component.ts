@@ -31,6 +31,10 @@ export class SearchFlightsComponent {
       tripType: this.tripType,
     };
     console.log(this.departureDate);
+    if (!this.departureDate || !this.toPlace || !this.departureDate) {
+    this.error = 'Please enter all the fields!';
+    return; //stop execution
+  }
     this.flightService.searchFlights(payload).subscribe({
       next: (res) => {
         this.flights = res.data.outboundFlights || [];
