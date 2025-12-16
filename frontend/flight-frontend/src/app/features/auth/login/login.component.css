@@ -102,6 +102,8 @@
   font-weight: 500;
 }
 
+
+
 /* Subtle entrance animation */
 @keyframes fadeUp {
   from {
@@ -113,6 +115,15 @@
     transform: translateY(0);
   }
 }
+input.ng-invalid.ng-touched {
+  border: 1px solid #e63946;
+}
+
+input.ng-valid.ng-touched {
+  border: 1px solid #2a9d8f;
+}
+
+
 
 /* .login-container {
   width: 320px;

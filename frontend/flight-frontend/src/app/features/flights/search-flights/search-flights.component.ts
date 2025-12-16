@@ -40,4 +40,9 @@ export class SearchFlightsComponent {
       },
     });
   }
+  //todo book in the future
+  book()
+  {
+    alert("Flight Selected!");
+  }
 }

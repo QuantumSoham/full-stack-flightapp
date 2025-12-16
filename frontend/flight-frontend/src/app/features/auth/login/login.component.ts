@@ -40,13 +40,30 @@ export class LoginComponent {
 ) {}
 
 login() {
+
+  // 🔹 ADDED: empty field validation
+  if (!this.email || !this.password) {
+    this.error = 'Email and password are required';
+    return; //stop execution
+  }
+
+  //basic email format check
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!emailRegex.test(this.email)) {
+    this.error = 'Please enter a valid email address';
+    return; //stop execution
+  }
+
+  //CLEAR previous errors before API call
+  this.error = '';
+
   this.authService.login({
     email: this.email,
     password: this.password,
   }).subscribe({
     next: (res) => {
       this.authService.saveToken(res.token);
-      console.log("login successful");
+      console.log('login successful');
       this.router.navigate(['/search-flights']);
     },
     error: () => {
@@ -54,5 +71,6 @@ login() {
     },
   });
 }
+
 
 }

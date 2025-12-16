@@ -1,24 +1,35 @@
 <div class="login-container">
   <h1>Fly With Us</h1>
 
+  <!-- 🔹 CHANGED: added required + email validation -->
   <input
     type="email"
     placeholder="Email"
     [(ngModel)]="email"
+    required
   />
 
+  <!-- 🔹 CHANGED: added required -->
   <input
     type="password"
     placeholder="Password"
     [(ngModel)]="password"
+    required
   />
 
-  <button (click)="login()">Login</button>
+  <!-- 🔹 CHANGED: disable button if inputs invalid -->
+  <button
+    (click)="login()"
+    [disabled]="!email || !password"
+  >
+    Login
+  </button>
+
   <p>
-  New here?
-  <a routerLink="/register">Register</a>
-</p>
+    New here?
+    <a routerLink="/register">Register</a>
+  </p>
 
-
+  <!-- 🔹 ERROR MESSAGE DISPLAY -->
   <p class="error" *ngIf="error">{{ error }}</p>
 </div>
