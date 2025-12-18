@@ -48,6 +48,8 @@ login() {
   }
 
   //basic email format check
+  //regex-explanation for email check
+  //start [one or more characters but not space or @] @ [one or more characters but not space or @] . [one or more characters but not space or @] end
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   if (!emailRegex.test(this.email)) {
     this.error = 'Please enter a valid email address';

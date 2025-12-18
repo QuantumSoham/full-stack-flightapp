@@ -24,5 +24,12 @@ export class FlightService {
       `${this.baseUrl}/api/v1.0/flight/search`,
       payload
     );
+
+  }
+  bookFlight(payload: any): Observable<any>{
+    return this.http.post(
+      `${this.baseUrl}/api/v1.0/flight/booking/1`,
+      payload
+    )
   }
 }

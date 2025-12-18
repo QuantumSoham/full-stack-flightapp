@@ -1,0 +1,35 @@
+<div class="booking-container">
+
+    <input [(ngModel)]="booking.flightId">
+    <input [(ngModel)]="booking.userName">
+    <input [(ngModel)]="booking.userEmail">
+    <input [(ngModel)]="booking.numberOfSeats">
+
+    <input [(ngModel)]="booking.passengers[0].name">
+    <input [(ngModel)]="booking.passengers[0].age">
+    <input type="radio" value="MALE"  [(ngModel)]="booking.passengers[0].gender">
+    <input type="radio" value="FEMALE"  [(ngModel)]="booking.passengers[0].gender">
+    <input [(ngModel)]="booking.passengers[0].seatNumber">
+    <input [(ngModel)]="booking.passengers[0].mealType">
+
+   
+
+    
+    <button (click)="bookFlight()">Book</button>
+</div>
+
+<!-- {
+  "flightId": 1,
+  "userName": "John Doe",
+  "userEmail": "john.doe@gmail.com",
+  "numberOfSeats": 1,
+  "passengers": [
+    {
+      "name": "John Doe",
+      "age": 30,
+      "gender": "MALE",
+      "seatNumber": "14A",
+      "mealType": "VEG"
+    }
+  ]
+} -->

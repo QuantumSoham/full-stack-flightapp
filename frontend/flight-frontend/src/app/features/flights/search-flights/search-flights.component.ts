@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { FlightService } from '../../../core/services/flight.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-search-flights',
@@ -20,7 +21,10 @@ export class SearchFlightsComponent {
   flights: any[] = [];
   error = '';
 
-  constructor(private flightService: FlightService) {}
+  
+  constructor(private flightService: FlightService,
+    private router: Router
+  ) {}
 
   search() {
     const payload = {
@@ -40,13 +44,13 @@ export class SearchFlightsComponent {
         this.flights = res.data.outboundFlights || [];
       },
       error: () => {
-        this.error = 'No flights found or unauthorized';
+        this.error = 'No flights found!';
       },
     });
   }
   //todo book in the future
   book()
   {
-    alert("Flight Selected!");
+    this.router.navigate(['/book-flights'])
   }
 }
