@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { RouterModule, Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { FlightService } from '../../../core/services/flight.service';
@@ -25,10 +25,12 @@ export class BookComponent {
       }
     ],
   };
+  @Input() id:string='';
   error = '';
   constructor(private flightService: FlightService, private router: Router) {}
 
   bookFlight() {
+
     this.flightService.bookFlight(this.booking).subscribe(
       {
         next:(response)=>{

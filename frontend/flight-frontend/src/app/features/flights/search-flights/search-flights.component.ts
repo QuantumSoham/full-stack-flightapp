@@ -12,8 +12,8 @@ import { Router } from '@angular/router';
   styleUrl: './search-flights.component.css',
 })
 export class SearchFlightsComponent {
-  fromPlace = '';
-  toPlace = '';
+  fromPlace = 'Delhi';
+  toPlace = 'Calcutta';
   departureDate = '';
   numberOfSeats = 1;
   tripType = 'ONE_WAY';
@@ -49,8 +49,8 @@ export class SearchFlightsComponent {
     });
   }
   //todo book in the future
-  book()
+  book(id:number)
   {
-    this.router.navigate(['/book-flights'])
+    this.router.navigate(['/book-flights',id])
   }
 }

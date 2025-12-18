@@ -21,12 +21,12 @@
 
   <p class="error" *ngIf="error">{{ error }}</p>
 
-  <div class="flight-card" *ngFor="let f of flights">
-    <h3>{{ f.airline.name }} ({{ f.flightNumber }})</h3>
-    <p>{{ f.fromPlace }} → {{ f.toPlace }}</p>
-    <p>Departure: {{ f.departureDateTime }}</p>
-    <p>Price: ₹{{ f.priceOneWay }}</p>
-    <p>Seats left: {{ f.availableSeats }}</p>
-    <button (click)="book()">BookNow</button>
+  <div class="flight-card" *ngFor="let flight of flights">
+    <h3>{{ flight.airline.name }} ({{ flight.flightNumber }})</h3>
+    <p>{{ flight.fromPlace }} → {{ flight.toPlace }}</p>
+    <p>Departure: {{ flight.departureDateTime }}</p>
+    <p>Price: ₹{{ flight.priceOneWay }}</p>
+    <p>Seats left: {{ flight.availableSeats }}</p>
+    <button (click)="book(flight.airline.id)">BookNow</button>
   </div>
 </div>

@@ -7,15 +7,12 @@ import { Observable } from 'rxjs';
 // Any component that asks for FlightService gets the same one
 @Injectable({ providedIn: 'root' })
 export class FlightService {
-
   // Base URL of the API Gateway
   // All flight-related backend calls go through this
   private baseUrl = 'http://localhost:8062';
-
   // HttpClient is Angular’s built-in way to make HTTP requests
   // Angular injects it automatically
   constructor(private http: HttpClient) {}
-
   // Sends a flight search request to the backend
   // payload contains fromPlace, toPlace, date, seats, tripType, etc.
   // Backend responds with a list of matching flights
@@ -24,12 +21,11 @@ export class FlightService {
       `${this.baseUrl}/api/v1.0/flight/search`,
       payload
     );
-
   }
   bookFlight(payload: any): Observable<any>{
     return this.http.post(
-      `${this.baseUrl}/api/v1.0/flight/booking/1`,
+      `${this.baseUrl}/api/v1.0/flight/booking/${payload.flightId}`,
       payload
-    )
+    );
   }
 }
