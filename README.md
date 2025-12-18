@@ -1,6 +1,7 @@
 
 # ✈️ Flight Management System – Angular Frontend
-
+## End to End Containerized Full stack flight management system using docker
+## Angular frontend is present in frontend/flight-frontend
 This repository contains the **Angular frontend** for a Flight Management System built on top of a **Spring Boot microservices backend** exposed via an **API Gateway**.
 
 <img width="5047" height="1828" alt="image" src="https://github.com/user-attachments/assets/00bee95a-0596-458a-a9cf-c27a070ab8b5" />
@@ -28,7 +29,10 @@ The frontend is responsible for:
 - Route protection
 - Clean communication with backend services
 
-The goal of this project was to build a **real-world, production-style frontend** that mirrors how enterprise systems are structured.
+# Run my frontend in your docker !!
+```shell
+docker pull sohamc2003/flight-frontend
+```
 
 ---
 
