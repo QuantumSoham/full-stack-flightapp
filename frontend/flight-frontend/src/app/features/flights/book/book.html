@@ -1,22 +1,36 @@
 <div class="booking-container">
+  <h2>Flight Booking</h2>
 
-    <input [(ngModel)]="booking.flightId">
-    <input [(ngModel)]="booking.userName">
-    <input [(ngModel)]="booking.userEmail">
-    <input [(ngModel)]="booking.numberOfSeats">
+  <input type="number" placeholder="Flight ID" [(ngModel)]="booking.flightId">
+  <input type="text" placeholder="Full Name" [(ngModel)]="booking.userName">
+  <input type="email" placeholder="Email Address" [(ngModel)]="booking.userEmail">
+  <input type="number" min="1" placeholder="Seats" [(ngModel)]="booking.numberOfSeats" (ngModelChange)="updatePassengers()">
 
-    <input [(ngModel)]="booking.passengers[0].name">
-    <input [(ngModel)]="booking.passengers[0].age">
-    <input type="radio" value="MALE"  [(ngModel)]="booking.passengers[0].gender">
-    <input type="radio" value="FEMALE"  [(ngModel)]="booking.passengers[0].gender">
-    <input [(ngModel)]="booking.passengers[0].seatNumber">
-    <input [(ngModel)]="booking.passengers[0].mealType">
+  <div class="passenger-section" *ngFor="let passenger of booking.passengers; let i=index ">
+    <h3>Passenger {{i+1}}</h3>
+    <input type="text" placeholder="Passenger Name" [(ngModel)]="passenger.name">
+    <input type="number" placeholder="Age" [(ngModel)]="passenger.age">
 
-   
+    <div class="gender-group">
+      <label>
+        <input type="radio" [name]="`gender` + i" value="MALE" [(ngModel)]="passenger.gender">
+        Male
+      </label>
+      <label>
+        <input type="radio" [name]="`gender` + i" value="FEMALE" [(ngModel)]="passenger.gender">
+        Female
+      </label>
+    </div>
 
-    
-    <button (click)="bookFlight()">Book</button>
+    <div class="inline-fields">
+      <input type="text" placeholder="Seat Number" [(ngModel)]="passenger.seatNumber">
+      <input type="text" placeholder="Meal Type" [(ngModel)]="passenger.mealType">
+    </div>
+  </div>
+
+  <button (click)="bookFlight()">Confirm Booking ✈️</button>
 </div>
+
 
 <!-- {
   "flightId": 1,

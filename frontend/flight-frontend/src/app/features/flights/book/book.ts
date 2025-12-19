@@ -2,10 +2,12 @@ import { Component, Input } from '@angular/core';
 import { RouterModule, Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { FlightService } from '../../../core/services/flight.service';
+import { CommonModule } from '@angular/common';
+
 
 @Component({
   selector: 'app-book',
-  imports: [FormsModule, RouterModule],
+  imports: [FormsModule, RouterModule, CommonModule],
   templateUrl: './book.html',
   styleUrl: './book.css',
 })
@@ -16,19 +18,35 @@ export class BookComponent {
     userEmail: 'john.doe@gmail.com',
     numberOfSeats: 1,
     passengers: [
-      {
-        name: "John Doe",
-        age: 30,
-        gender: "MALE",
-        seatNumber: "14A",
-        mealType: "VEG"
-      }
+      this.createPassenger()
     ],
   };
   @Input() id:string='';
   error = '';
   constructor(private flightService: FlightService, private router: Router) {}
 
+  createPassenger(){
+    return {
+        name: "John Doe",
+        age: 30,
+        gender: "MALE",
+        seatNumber: "14A",
+        mealType: "VEG"
+      };
+  }
+  updatePassengers()
+  {
+    const count=this.booking.numberOfSeats;
+    while(this.booking.passengers.length < count)
+    {
+      this.booking.passengers.push(this.createPassenger()); 
+    }
+
+    while(this.booking.passengers.length > count)
+    {
+      this.booking.passengers.pop();
+    }
+  }
   bookFlight() {
 
     this.flightService.bookFlight(this.booking).subscribe(
