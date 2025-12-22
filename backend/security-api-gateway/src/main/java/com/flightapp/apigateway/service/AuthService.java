@@ -1,6 +1,7 @@
 package com.flightapp.apigateway.service;
 
 import com.flightapp.apigateway.dto.AuthResponse;
+import com.flightapp.apigateway.dto.ChangePasswordRequest;
 import com.flightapp.apigateway.dto.LoginRequest;
 import com.flightapp.apigateway.dto.RegisterRequest;
 import com.flightapp.apigateway.security.JwtUtil;
@@ -61,4 +62,26 @@ public class AuthService {
         String token = jwtUtil.generateToken(user.getEmail(), user.getRole());
         return new AuthResponse(token, user.getEmail(), user.getRole(), forceChange);
     }
+    
+    public void changePassword(String token, ChangePasswordRequest request) {
+
+        if (!jwtUtil.isTokenValid(token)) {
+            throw new RuntimeException("Invalid token");
+        }
+
+        String email = jwtUtil.getEmail(token);
+
+        User user = userRepository.findByEmail(email)
+                .orElseThrow(() -> new RuntimeException("User not found"));
+
+        if (!passwordEncoder.matches(request.getOldPassword(), user.getPasswordHash())) {
+            throw new RuntimeException("Old password incorrect");
+        }
+
+        user.setPasswordHash(passwordEncoder.encode(request.getNewPassword()));
+        user.setPasswordLastChangedAt(Instant.now());
+
+        userRepository.save(user);
+    }
+
 }
