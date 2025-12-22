@@ -8,13 +8,17 @@ import com.flightapp.apigateway.model.User;
 import com.flightapp.apigateway.repository.UserRepository;
 import com.flightapp.apigateway.model.UserRole;
 import lombok.RequiredArgsConstructor;
+
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
 public class AuthService {
-
+	
+	@Value("${security.password.expiry-days}")
+	private long passwordExpiryDays;
     private final UserRepository userRepository;
     private final JwtUtil jwtUtil;
     private final BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
