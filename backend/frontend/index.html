@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>CORS Test</title>
+</head>
+<body>
+  <h1>CORS Test for flight/search</h1>
+  <button id="btn">Send Request</button>
+
+  <pre id="log"></pre>
+
+  <script>
+    const log = msg => {
+      document.getElementById('log').textContent += msg + "\n";
+    };
+
+    document.getElementById("btn").addEventListener("click", async () => {
+      const url = "http://localhost:8062/api/v1.0/flight/search";
+
+      const payload ={
+  "fromPlace": "Delhi",
+  "toPlace": "Calcutta",
+  "departureDate": "2025-12-15T10:00:00",
+  "numberOfSeats": 1,
+  "tripType": "ONE_WAY"
+}
+
+      try {
+        log("Sending POST...");
+
+        const response = await fetch(url, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify(payload)
+        });
+
+        log(`Status: ${response.status}`);
+        log("Response headers:");
+
+        for (let pair of response.headers.entries()) {
+          log(`${pair[0]}: ${pair[1]}`);
+        }
+
+        const data = await response.json();
+        log("Response body:");
+        log(JSON.stringify(data, null, 2));
+      } catch (err) {
+        log("Error:");
+        log(err.toString());
+      }
+    });
+  </script>
+</body>
+</html>

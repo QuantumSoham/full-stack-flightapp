@@ -1,0 +1,16 @@
+[{
+  "airlineId": 1,
+  "from": "DEL",
+  "to": "BOM",
+  "date": "2025-12-31",
+  "availableSeats": 100,
+  "price": 5000
+},
+{
+  "airlineId": 1,
+  "from": "DEL",
+  "to": "BOM",
+  "date": "2025-12-31",
+  "availableSeats": 100,
+  "price": 5000
+}]
