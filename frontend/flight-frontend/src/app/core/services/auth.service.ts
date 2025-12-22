@@ -38,6 +38,17 @@ export class AuthService {
   }): Observable<any> {
     return this.http.post(`${this.baseUrl}/auth/register`, data);
   }
+  changePassword(payload: {
+    email: string;
+    oldPassword: string;
+    newPassword: string;
+  }): Observable<void> {
+
+    return this.http.post<void>(
+      `${this.baseUrl}/auth/change-password`,
+      payload
+    );
+  }
   saveUser(res:any, email:string)
   {
       localStorage.setItem('userEmail',email);

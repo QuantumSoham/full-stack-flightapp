@@ -5,6 +5,7 @@ import { SearchFlightsComponent } from './features/flights/search-flights/search
 import { BookComponent } from './features/flights/book/book';
 import { ViewBookingComponent } from './features/flights/view-booking-component/view-booking-component';
 import { AddFlightComponent } from './features/flights/add-flight.component/add-flight.component';
+import { ChangePasswordComponent } from './features/auth/change-password.component/change-password.component';
 
 export const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -13,6 +14,8 @@ export const routes: Routes = [
   {path:'book-flights/:id',component: BookComponent},
   {path:'view-booking',component: ViewBookingComponent},
   { path: 'admin/add-flight', component: AddFlightComponent },
+  { path: 'change-password', component: ChangePasswordComponent },
+  
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   
 ];

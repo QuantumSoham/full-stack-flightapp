@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ChangePasswordComponentHtml } from './change-password.component.html';
+import {ChangePasswordComponent as ChangePasswordComponentHtml } from './change-password.component';
 
 describe('ChangePasswordComponentHtml', () => {
   let component: ChangePasswordComponentHtml;
