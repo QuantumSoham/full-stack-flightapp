@@ -1,6 +1,7 @@
 package com.flightapp.apigateway.controller;
 
 import com.flightapp.apigateway.dto.AuthResponse;
+import com.flightapp.apigateway.dto.ChangePasswordRequest;
 import com.flightapp.apigateway.dto.LoginRequest;
 import com.flightapp.apigateway.dto.RegisterRequest;
 import com.flightapp.apigateway.service.AuthService;
@@ -31,6 +32,17 @@ public class AuthController {
     public ResponseEntity<AuthResponse> login(@Valid @RequestBody LoginRequest request) {
         AuthResponse response = authService.login(request);
         return ResponseEntity.ok(response);
+    }
+
+    @PostMapping("/change-password")
+    public ResponseEntity<Void> changePassword(
+            @RequestHeader("Authorization") String authHeader,
+            @Valid @RequestBody ChangePasswordRequest request) {
+
+        String token = authHeader.substring(7);
+        authService.changePassword(token, request);
+
+        return ResponseEntity.ok().build();
     }
 
     // simple test
