@@ -17,6 +17,13 @@ export class FlightService {
   // Sends a flight search request to the backend
   // payload contains fromPlace, toPlace, date, seats, tripType, etc.
   // Backend responds with a list of matching flights
+  addFlight(payload: any): Observable<any>
+  {
+     return this.http.post(
+      `${this.baseUrl}/api/v1.0/flight/airline/inventory/add`,
+      payload
+    );
+  }
   searchFlights(payload: any): Observable<any> {
     return this.http.post(
       `${this.baseUrl}/api/v1.0/flight/search`,

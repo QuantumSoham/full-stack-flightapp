@@ -1,1 +1,61 @@
-<p>add-flight.component works!</p>
+<div class="container">
+  <h2>✈️ Add Flight Inventory</h2>
+
+  <form (ngSubmit)="submit()">
+
+    <div class="row">
+      <input type="number" placeholder="Airline ID"
+             [(ngModel)]="flight.airlineId" name="airlineId" required>
+
+      <input type="text" placeholder="Flight Number"
+             [(ngModel)]="flight.flightNumber" name="flightNumber" required>
+    </div>
+
+    <div class="row">
+      <input type="text" placeholder="From"
+             [(ngModel)]="flight.fromPlace" name="fromPlace" required>
+
+      <input type="text" placeholder="To"
+             [(ngModel)]="flight.toPlace" name="toPlace" required>
+    </div>
+
+    <div class="row">
+      <label>
+        Departure
+        <input type="datetime-local"
+               [(ngModel)]="flight.departureDateTime"
+               name="departureDateTime" required>
+      </label>
+
+      <label>
+        Arrival
+        <input type="datetime-local"
+               [(ngModel)]="flight.arrivalDateTime"
+               name="arrivalDateTime" required>
+      </label>
+    </div>
+
+    <div class="row">
+      <input type="number" placeholder="Total Seats"
+             [(ngModel)]="flight.totalSeats" name="totalSeats" required>
+
+      <input type="number" placeholder="Economy Seats"
+             [(ngModel)]="flight.economySeats" name="economySeats" required>
+
+      <input type="number" placeholder="Business Seats"
+             [(ngModel)]="flight.businessSeats" name="businessSeats" required>
+    </div>
+
+    <div class="row">
+      <input type="number" placeholder="Price One Way (₹)"
+             [(ngModel)]="flight.priceOneWay"
+             name="priceOneWay" required>
+    </div>
+
+    <button type="submit">Add Flight</button>
+
+    <p class="success" *ngIf="success">{{ success }}</p>
+    <p class="error" *ngIf="error">{{ error }}</p>
+
+  </form>
+</div>
