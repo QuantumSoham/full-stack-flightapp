@@ -1,9 +1,8 @@
 FROM maven:3.8.5-openjdk-17
 
-WORKDIR /config-server
+WORKDIR /security-api-gateway
 
-COPY . .
+COPY target/config-server-0.0.1-SNAPSHOT.jar app.jar
 
-RUN mvn clean install -DskipTests
+CMD ["java","-jar","app.jar"]
 
-CMD ["mvn","spring-boot:run","-Dmaven.test.skip=true"]
