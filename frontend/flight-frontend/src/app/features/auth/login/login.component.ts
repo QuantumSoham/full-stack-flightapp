@@ -67,6 +67,7 @@ login() {
       this.authService.saveToken(res.token);
       localStorage.setItem('userEmail',this.email);
       console.log('login successful');
+      localStorage.setItem('role',res.role);
       this.router.navigate(['/search-flights']);
     },
     error: () => {
