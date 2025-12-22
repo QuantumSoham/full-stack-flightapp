@@ -1,7 +1,6 @@
 <div class="login-container">
   <h1>Fly With Us</h1>
 
-  <!-- added required + email validation -->
   <input
     type="email"
     placeholder="Email"
@@ -9,7 +8,6 @@
     required
   />
 
-  <!--added required -->
   <input
     type="password"
     placeholder="Password"
@@ -17,7 +15,6 @@
     required
   />
 
-  <!--disable button if inputs invalid -->
   <button
     (click)="login()"
     [disabled]="!email || !password"
@@ -25,11 +22,11 @@
     Login
   </button>
 
-  <p>
-    New here?
+  <p class="links">
+    <a routerLink="/change-password">Change Password</a>
+    <span>•</span>
     <a routerLink="/register">Register</a>
   </p>
 
-  <!-- ERROR MESSAGE DISPLAY -->
   <p class="error" *ngIf="error">{{ error }}</p>
 </div>

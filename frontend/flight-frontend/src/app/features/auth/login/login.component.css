@@ -103,6 +103,26 @@
 }
 
 
+.links {
+  margin-top: 12px;
+  font-size: 14px;
+  text-align: center;
+}
+
+.links a {
+  color: #0b3c5d;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.links a:hover {
+  text-decoration: underline;
+}
+
+.links span {
+  margin: 0 6px;
+  color: #999;
+}
 
 /* Subtle entrance animation */
 @keyframes fadeUp {
