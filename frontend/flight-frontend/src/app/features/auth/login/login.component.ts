@@ -69,6 +69,9 @@ login() {
       // console.log('login successful');
       // localStorage.setItem('role',res.role);
       this.authService.saveUser(res,this.email)
+      console.log("is user ?",this.authService.isUser());
+      console.log("is admin ?",this.authService.isAdmin());
+
       this.router.navigate(['/search-flights']);
     },
     error: () => {

@@ -44,6 +44,15 @@ export class AuthService {
       console.log('login successful');
       localStorage.setItem('role',res.role);
   }
+
+  isUser()
+  {
+    return localStorage.getItem('role')==='ROLE_USER';
+  }
+  isAdmin()
+  {
+    return localStorage.getItem('role')==='ROLE_ADMIN';
+  }
   // Stores JWT token in localStorage after successful login
   // This token is later picked up by the HTTP interceptor
   saveToken(token: string) {
