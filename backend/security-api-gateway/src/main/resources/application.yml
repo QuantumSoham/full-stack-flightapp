@@ -133,6 +133,9 @@ spring:
           filters:
             - StripPrefix=0
             - DedupeResponseHeader=Access-Control-Allow-Origin Access-Control-Allow-Credentials
+security:
+  password:
+    expiry-days: 30
 jwt:
   secret: "this_is_a_very_long_and_secure_jwt_secret_key_123456"
   expiration-ms: 86400000
