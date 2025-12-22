@@ -4,6 +4,10 @@
   <ul>
     <li><a routerLink="/search-flights">Search Flights</a></li>
     <li><a routerLink="/view-booking">My Bookings</a></li>
+    <!-- ADMIN ONLY -->
+  <li *ngIf="authservice.isAdmin()">
+    <a routerLink="/admin/add-flight">Add Flights</a>
+  </li>
   </ul>
 
   <div class="right">
