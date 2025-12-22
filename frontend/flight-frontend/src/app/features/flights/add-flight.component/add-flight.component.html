@@ -1,5 +1,5 @@
 <div class="container">
-  <h2>✈️ Add Flight Inventory</h2>
+  <h2>Add Flight Inventory</h2>
 
   <form (ngSubmit)="submit()">
 
@@ -36,17 +36,19 @@
     </div>
 
     <div class="row">
+        Total Seats:
       <input type="number" placeholder="Total Seats"
              [(ngModel)]="flight.totalSeats" name="totalSeats" required>
-
+        Economy Seats:
       <input type="number" placeholder="Economy Seats"
              [(ngModel)]="flight.economySeats" name="economySeats" required>
-
+        Business Seats:
       <input type="number" placeholder="Business Seats"
              [(ngModel)]="flight.businessSeats" name="businessSeats" required>
     </div>
 
     <div class="row">
+        Price:
       <input type="number" placeholder="Price One Way (₹)"
              [(ngModel)]="flight.priceOneWay"
              name="priceOneWay" required>
