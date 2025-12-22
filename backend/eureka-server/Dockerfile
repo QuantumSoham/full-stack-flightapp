@@ -1,9 +1,8 @@
 FROM maven:3.8.5-openjdk-17
 
-WORKDIR /eureka-server
+WORKDIR /security-api-gateway
 
-COPY . .
+COPY target/eureka-server-1.0.0.jar app.jar
 
-RUN mvn clean install -DskipTests
+CMD ["java","-jar","app.jar"]
 
-CMD ["mvn", "spring-boot:run", "-Dmaven.test.skip=true"]

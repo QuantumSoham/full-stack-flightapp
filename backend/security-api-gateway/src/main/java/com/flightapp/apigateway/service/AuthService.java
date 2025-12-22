@@ -43,6 +43,7 @@ public class AuthService {
                 .fullName(request.getFullName())
                 .passwordHash(passwordEncoder.encode(request.getPassword()))
                 .role(role)
+                .passwordLastChangedAt(Instant.now()) 
                 .build();
 
         userRepository.save(user);
