@@ -4,6 +4,7 @@ import { RegisterComponent } from './features/auth/register/register.component';
 import { SearchFlightsComponent } from './features/flights/search-flights/search-flights.component';
 import { BookComponent } from './features/flights/book/book';
 import { ViewBookingComponent } from './features/flights/view-booking-component/view-booking-component';
+import { AddFlightComponent } from './features/flights/add-flight.component/add-flight.component';
 
 export const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -11,6 +12,7 @@ export const routes: Routes = [
   { path: 'search-flights', component: SearchFlightsComponent },
   {path:'book-flights/:id',component: BookComponent},
   {path:'view-booking',component: ViewBookingComponent},
+  { path: 'admin/add-flight', component: AddFlightComponent },
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   
 ];
