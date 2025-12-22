@@ -13,6 +13,7 @@ export class FlightService {
   // HttpClient is Angular’s built-in way to make HTTP requests
   // Angular injects it automatically
   constructor(private http: HttpClient,  private authService: AuthService) {}
+  
   // Sends a flight search request to the backend
   // payload contains fromPlace, toPlace, date, seats, tripType, etc.
   // Backend responds with a list of matching flights

@@ -38,7 +38,12 @@ export class AuthService {
   }): Observable<any> {
     return this.http.post(`${this.baseUrl}/auth/register`, data);
   }
-
+  saveUser(res:any, email:string)
+  {
+      localStorage.setItem('userEmail',email);
+      console.log('login successful');
+      localStorage.setItem('role',res.role);
+  }
   // Stores JWT token in localStorage after successful login
   // This token is later picked up by the HTTP interceptor
   saveToken(token: string) {

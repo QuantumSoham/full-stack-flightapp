@@ -65,9 +65,10 @@ login() {
   }).subscribe({
     next: (res) => {
       this.authService.saveToken(res.token);
-      localStorage.setItem('userEmail',this.email);
-      console.log('login successful');
-      localStorage.setItem('role',res.role);
+      // localStorage.setItem('userEmail',this.email);
+      // console.log('login successful');
+      // localStorage.setItem('role',res.role);
+      this.authService.saveUser(res,this.email)
       this.router.navigate(['/search-flights']);
     },
     error: () => {
