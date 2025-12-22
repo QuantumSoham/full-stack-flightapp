@@ -63,25 +63,46 @@ public class AuthService {
         return new AuthResponse(token, user.getEmail(), user.getRole(), forceChange);
     }
     
-    public void changePassword(String token, ChangePasswordRequest request) {
+    public void changePassword(ChangePasswordRequest request) {
 
-        if (!jwtUtil.isTokenValid(token)) {
-            throw new RuntimeException("Invalid token");
-        }
-
-        String email = jwtUtil.getEmail(token);
-
-        User user = userRepository.findByEmail(email)
+        User user = userRepository.findByEmail(request.getEmail())
                 .orElseThrow(() -> new RuntimeException("User not found"));
 
-        if (!passwordEncoder.matches(request.getOldPassword(), user.getPasswordHash())) {
+        if (!passwordEncoder.matches(
+                request.getOldPassword(),
+                user.getPasswordHash())) {
             throw new RuntimeException("Old password incorrect");
         }
 
-        user.setPasswordHash(passwordEncoder.encode(request.getNewPassword()));
+        user.setPasswordHash(
+                passwordEncoder.encode(request.getNewPassword())
+        );
+
         user.setPasswordLastChangedAt(Instant.now());
 
         userRepository.save(user);
     }
+
+    
+//    public void changePassword(String token, ChangePasswordRequest request) {
+//
+//        if (!jwtUtil.isTokenValid(token)) {
+//            throw new RuntimeException("Invalid token");
+//        }
+//
+//        String email = jwtUtil.getEmail(token);
+//
+//        User user = userRepository.findByEmail(email)
+//                .orElseThrow(() -> new RuntimeException("User not found"));
+//
+//        if (!passwordEncoder.matches(request.getOldPassword(), user.getPasswordHash())) {
+//            throw new RuntimeException("Old password incorrect");
+//        }
+//
+//        user.setPasswordHash(passwordEncoder.encode(request.getNewPassword()));
+//        user.setPasswordLastChangedAt(Instant.now());
+//
+//        userRepository.save(user);
+//    }
 
 }

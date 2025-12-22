@@ -36,14 +36,12 @@ public class AuthController {
 
     @PostMapping("/change-password")
     public ResponseEntity<Void> changePassword(
-            @RequestHeader("Authorization") String authHeader,
             @Valid @RequestBody ChangePasswordRequest request) {
 
-        String token = authHeader.substring(7);
-        authService.changePassword(token, request);
-
+        authService.changePassword(request);
         return ResponseEntity.ok().build();
     }
+
 
     // simple test
     @GetMapping("/ping")
