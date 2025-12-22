@@ -1,0 +1,50 @@
+<div class="booking-history-container">
+
+  <h2>My Booking History</h2>
+
+  <button class="fetch-btn" (click)="showBookings()">
+    View My Bookings
+  </button>
+
+  <p class="error" *ngIf="error">
+    {{ error }}
+  </p>
+
+  <p class="empty" *ngIf="!error && bookings.length === 0">
+    No bookings to display.
+  </p>
+
+  <div class="booking-card" *ngFor="let booking of bookings">
+
+    <div class="card-header">
+      <h3>PNR: {{ booking.pnr }}</h3>
+      <span class="status" [class.cancelled]="booking.status === 'CANCELLED'">
+        {{ booking.status }}
+      </span>
+    </div>
+
+    <div class="card-body">
+      <p><strong>Booking ID:</strong> {{ booking.id }}</p>
+      <p><strong>Flight ID:</strong> {{ booking.flightId }}</p>
+
+      <p>
+        <strong>Booking Date:</strong>
+        {{ booking.bookingDateTime | date:'medium' }}
+      </p>
+
+      <p>
+        <strong>Journey Date:</strong>
+        {{ booking.journeyDateTime | date:'medium' }}
+      </p>
+
+      <p><strong>Seats Booked:</strong> {{ booking.numberOfSeats }}</p>
+      <p><strong>Total Price:</strong> ₹{{ booking.totalPrice }}</p>
+    </div>
+
+    <button class="cancel-btn" (click)="cancelBooking(booking.pnr)">
+      Cancel Booking
+    </button>
+
+  </div>
+
+</div>

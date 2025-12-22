@@ -3,11 +3,12 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { FlightService } from '../../../core/services/flight.service';
 import { Router } from '@angular/router';
+import { ViewBookingComponent } from '../view-booking-component/view-booking-component';
 
 @Component({
   selector: 'app-search-flights',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, ViewBookingComponent],
   templateUrl: './search-flights.component.html',
   styleUrl: './search-flights.component.css',
 })
@@ -40,8 +41,8 @@ export class SearchFlightsComponent {
     return; //stop execution
   }
     this.flightService.searchFlights(payload).subscribe({
-      next: (res) => {
-        this.flights = res.data.outboundFlights || [];
+      next: (response) => {
+        this.flights = response.data.outboundFlights || [];
       },
       error: () => {
         this.error = 'No flights found!';

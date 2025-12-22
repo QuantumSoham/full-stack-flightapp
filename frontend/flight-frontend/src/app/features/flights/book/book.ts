@@ -3,9 +3,11 @@ import { RouterModule, Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { FlightService } from '../../../core/services/flight.service';
 import { CommonModule } from '@angular/common';
+import { AuthService } from '../../../core/services/auth.service';
 
 
 @Component({
+  standalone:true,
   selector: 'app-book',
   imports: [FormsModule, RouterModule, CommonModule],
   templateUrl: './book.html',
@@ -23,7 +25,7 @@ export class BookComponent {
   };
   @Input() id:string='';
   error = '';
-  constructor(private flightService: FlightService, private router: Router) {}
+  constructor(private flightService: FlightService, private router: Router, private authservice: AuthService) {}
 
   createPassenger(){
     return {
@@ -48,7 +50,15 @@ export class BookComponent {
     }
   }
   bookFlight() {
+     const email = this.authservice.getUserEmail();
 
+  if (!email) {
+    this.error = 'User not logged in';
+    this.router.navigate(['/login']);
+    return;
+  }
+
+  this.booking.userEmail = email;
     this.flightService.bookFlight(this.booking).subscribe(
       {
         next:(response)=>{

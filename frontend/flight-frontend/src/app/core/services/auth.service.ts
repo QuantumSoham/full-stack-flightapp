@@ -17,6 +17,11 @@ export class AuthService {
   // Used for all backend communication
   constructor(private http: HttpClient) {}
 
+  
+  getUserEmail(): string | null {
+  return localStorage.getItem('userEmail');
+}
+
   // Sends login credentials to backend
   // Backend validates user and returns JWT + role info
   login(data: { email: string; password: string }): Observable<any> {

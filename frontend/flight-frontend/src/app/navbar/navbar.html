@@ -1,0 +1,13 @@
+<nav class="navbar">
+  <div class="logo">✈️ FlyHigh</div>
+
+  <ul>
+    <li><a routerLink="/search-flights">Search Flights</a></li>
+    <li><a routerLink="/view-booking">My Bookings</a></li>
+  </ul>
+
+  <div class="right">
+    <span class="email">{{ email }}</span>
+    <button (click)="logout()">Logout</button>
+  </div>
+</nav>

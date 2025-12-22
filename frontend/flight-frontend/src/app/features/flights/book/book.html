@@ -3,7 +3,7 @@
 
   <input type="number" placeholder="Flight ID" [(ngModel)]="booking.flightId">
   <input type="text" placeholder="Full Name" [(ngModel)]="booking.userName">
-  <input type="email" placeholder="Email Address" [(ngModel)]="booking.userEmail">
+  
   <input type="number" min="1" placeholder="Seats" [(ngModel)]="booking.numberOfSeats" (ngModelChange)="updatePassengers()">
 
   <div class="passenger-section" *ngFor="let passenger of booking.passengers; let i=index ">

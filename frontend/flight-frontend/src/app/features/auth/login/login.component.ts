@@ -65,6 +65,7 @@ login() {
   }).subscribe({
     next: (res) => {
       this.authService.saveToken(res.token);
+      localStorage.setItem('userEmail',this.email);
       console.log('login successful');
       this.router.navigate(['/search-flights']);
     },
