@@ -10,4 +10,5 @@ public class AuthResponse {
     private String token;
     private String email;
     private UserRole role;
+    private boolean forcePasswordChange;
 }
