@@ -9,6 +9,8 @@ import com.flightapp.apigateway.repository.UserRepository;
 import com.flightapp.apigateway.model.UserRole;
 import lombok.RequiredArgsConstructor;
 
+import java.time.Instant;
+
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -22,6 +24,11 @@ public class AuthService {
     private final UserRepository userRepository;
     private final JwtUtil jwtUtil;
     private final BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+
+    private boolean isPasswordExpired(User user, long expiryDays) {
+        Instant expiryThreshold = Instant.now().minusSeconds(expiryDays * 24 * 60 * 60);
+        return user.getPasswordLastChangedAt().isBefore(expiryThreshold);
+    }
 
     public AuthResponse register(RegisterRequest request) {
         if (userRepository.existsByEmail(request.getEmail())) {
