@@ -62,7 +62,7 @@ export class BookComponent {
     this.flightService.bookFlight(this.booking).subscribe(
       {
         next:(response)=>{
-          console.log(response);
+          this.router.navigate(['/view-booking']);
         },
         error:()=>{
           this.error='Booking not successful'
