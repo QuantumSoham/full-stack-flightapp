@@ -9,6 +9,15 @@ This repository contains the **Angular frontend** for a Flight Management System
 ## Login Page
 ![Login Page](images/login-page.jpg)
 
+## From the backend i am getting a json of user role type on signin , it helps me get automatic role of user based on login details admin/ user
+## Add flight , available to only admin login users
+![Registration Page](images/admin-only-rbac.jpg)
+
+## View and delete booking page available to all logged in user
+![Registration Page](images/delete-booking.jpg)
+
+## 
+
 ## Registration Page
 ![Registration Page](images/reg-page.jpg)
 
