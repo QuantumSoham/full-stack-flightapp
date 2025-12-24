@@ -101,3 +101,21 @@
   transform: translateY(0);
   box-shadow: none;
 }
+
+/* Seat map styles */
+.seat-legend { font-size: 13px; color: #455a64; margin-bottom: 8px; }
+.seat-rows { margin-top: 12px; margin-bottom: 8px; display:flex; flex-direction:column; gap:8px; }
+.seat-row { display:flex; align-items:center; justify-content:center; gap:12px; }
+.seat-block { display:flex; gap:8px; }
+.seat { padding: 8px 6px; border-radius: 6px; border: 1px solid #cfd8dc; background: #f7fbff; cursor: pointer; font-weight: 600; color: #0b3c5d; min-width:46px; text-align:center; }
+.seat:hover { box-shadow: 0 6px 12px rgba(11,60,93,0.08); }
+.seat.selected { background: linear-gradient(180deg,#16a34a,#15803d); color: white; border-color: #0b3c5d; }
+.aisle { width: 40px; height: 36px; }
+.selected-list { margin-top: 10px; font-size: 14px; color: #0b3c5d; }
+
+/* make grid horizontally scrollable on very small screens */
+@media (max-width: 420px) {
+  .seat-row { gap: 8px; }
+  .aisle { width: 18px; }
+  .seat { min-width: 40px; padding: 6px 4px; }
+}

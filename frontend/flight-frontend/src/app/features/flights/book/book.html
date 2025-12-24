@@ -28,6 +28,30 @@
     </div>
   </div>
 
+  <h3>Select Seats</h3>
+  <div class="seat-legend">Select up to {{ booking.numberOfSeats }} seat(s). Click a seat to toggle selection.</div>
+  <div class="seat-rows">
+    <div class="seat-row" *ngFor="let row of seatsByRow">
+      <div class="seat-block left">
+        <button type="button" class="seat" *ngFor="let s of row.slice(0,3)"
+          [class.selected]="selectedSeats.indexOf(s) !== -1"
+          (click)="toggleSeat(s)">{{ s }}</button>
+      </div>
+
+      <div class="aisle" aria-hidden="true"></div>
+
+      <div class="seat-block right">
+        <button type="button" class="seat" *ngFor="let s of row.slice(3,6)"
+          [class.selected]="selectedSeats.indexOf(s) !== -1"
+          (click)="toggleSeat(s)">{{ s }}</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="selected-list" *ngIf="selectedSeats.length">
+    Selected: {{ selectedSeats.join(', ') }}
+  </div>
+
   <button (click)="bookFlight()">Confirm Booking ✈️</button>
 </div>
 
