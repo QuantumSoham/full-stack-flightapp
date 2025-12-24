@@ -33,6 +33,7 @@ export class RegisterComponent {
       next: (res) => {
         this.authService.saveToken(res.token);
         alert('Registration successful');
+        
         this.router.navigate(['/login']);
       },
       error: () => {

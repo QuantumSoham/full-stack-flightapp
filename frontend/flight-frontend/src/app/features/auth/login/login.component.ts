@@ -41,7 +41,7 @@ export class LoginComponent {
 
 login() {
 
-  // 🔹 ADDED: empty field validation
+  //
   if (!this.email || !this.password) {
     this.error = 'Email and password are required';
     return; //stop execution
@@ -71,7 +71,10 @@ login() {
       this.authService.saveUser(res,this.email)
       console.log("is user ?",this.authService.isUser());
       console.log("is admin ?",this.authService.isAdmin());
-
+      if(res.forcePasswordChange)
+        {
+          this.router.navigate(['/change-password']);
+        }
       this.router.navigate(['/search-flights']);
     },
     error: () => {
