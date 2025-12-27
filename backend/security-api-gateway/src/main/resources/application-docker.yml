@@ -1,81 +1,44 @@
-server:
-  port: 8062
-
 spring:
-  application:
-    name: api-gateway
-
-  datasource:
-    url: jdbc:mysql://localhost:3306/flight_auth_db?createDatabaseIfNotExist=true&useSSL=false&allowPublicKeyRetrieval=true
-    username: root1
-    password: Riju@03Rai@07
-    driver-class-name: com.mysql.cj.jdbc.Driver
-
-  jpa:
-    hibernate:
-      ddl-auto: update
-    show-sql: true
-    properties:
-      hibernate:
-        format_sql: true
-
   cloud:
     gateway:
 
-      globalcors:
-        add-to-simple-url-handler-mapping: true
-        corsConfigurations:
-          "[/**]":
-            allowedOrigins:
-              - "http://localhost:4200"
-            allowedMethods:
-              - GET
-              - POST
-              - PUT
-              - DELETE
-              - OPTIONS
-            allowedHeaders:
-              - Authorization
-              - Content-Type
-              - Accept
-              - X-Requested-With
-            allowCredentials: true
-
       routes:
 
-        # flight service
+        # ======================
+        # ✈️ Flight Service
+        # ======================
 
         - id: flight-airline-add
           uri: lb://flight-service
           predicates:
             - Path=/api/v1.0/flight/airline/add
-            - Method=POST
           filters:
             - StripPrefix=0
+            - DedupeResponseHeader=Access-Control-Allow-Origin Access-Control-Allow-Credentials
 
         - id: flight-airline-get
           uri: lb://flight-service
           predicates:
             - Path=/api/v1.0/flight/airline/{id}
-            - Method=GET
           filters:
             - StripPrefix=0
+            - DedupeResponseHeader=Access-Control-Allow-Origin Access-Control-Allow-Credentials
 
         - id: flight-airline-all
           uri: lb://flight-service
           predicates:
             - Path=/api/v1.0/flight/airline/all
-            - Method=GET
           filters:
             - StripPrefix=0
+            - DedupeResponseHeader=Access-Control-Allow-Origin Access-Control-Allow-Credentials
 
         - id: flight-inventory-add
           uri: lb://flight-service
           predicates:
             - Path=/api/v1.0/flight/airline/inventory/add
-            - Method=POST
           filters:
             - StripPrefix=0
+            - DedupeResponseHeader=Access-Control-Allow-Origin Access-Control-Allow-Credentials
 
         - id: flight-search
           uri: lb://flight-service
@@ -89,35 +52,38 @@ spring:
           uri: lb://flight-service
           predicates:
             - Path=/api/v1.0/flight/{flightId}
-            - Method=GET
           filters:
             - StripPrefix=0
+            - DedupeResponseHeader=Access-Control-Allow-Origin Access-Control-Allow-Credentials
 
         - id: flight-seat-operations
           uri: lb://flight-service
           predicates:
             - Path=/api/v1.0/flight/{flightId}/**
-            - Method=PUT
           filters:
             - StripPrefix=0
+            - DedupeResponseHeader=Access-Control-Allow-Origin Access-Control-Allow-Credentials
 
-        # booking service
+
+        # ======================
+        # 🎟️ Booking Service
+        # ======================
 
         - id: booking-create
           uri: lb://booking-service
           predicates:
             - Path=/api/v1.0/flight/booking/{flightId}
-            - Method=POST
           filters:
             - StripPrefix=0
+            - DedupeResponseHeader=Access-Control-Allow-Origin Access-Control-Allow-Credentials
 
         - id: booking-ticket-get
           uri: lb://booking-service
           predicates:
             - Path=/api/v1.0/flight/ticket/{pnr}
-            - Method=GET
           filters:
             - StripPrefix=0
+            - DedupeResponseHeader=Access-Control-Allow-Origin Access-Control-Allow-Credentials
 
         - id: booking-history
           uri: lb://booking-service
@@ -131,9 +97,9 @@ spring:
           uri: lb://booking-service
           predicates:
             - Path=/api/v1.0/flight/booking/cancel/{pnr}
-            - Method=DELETE
           filters:
             - StripPrefix=0
+            - DedupeResponseHeader=Access-Control-Allow-Origin Access-Control-Allow-Credentials
 
 jwt:
   secret: "this_is_a_very_long_and_secure_jwt_secret_key_123456"

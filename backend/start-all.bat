@@ -6,6 +6,9 @@ start cmd /k java -jar eureka-server\target\eureka-server-1.0.0.jar
 echo Waiting 10 seconds for Eureka to initialize...
 timeout /t 10 /nobreak > nul
 
+echo Starting Config Server...
+start cmd /k java -jar config-server\target\config-server-1.0.0.jar
+
 echo Starting API Gateway...
 start cmd /k java -jar security-api-gateway\target\security-api-gateway-1.0.0.jar
 
